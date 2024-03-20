@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klassic Kurta Stock Management</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  form {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Klassic Kurta Stock Management</h1>
+
+  <form id="stockForm">
+    <label for="code">Code:</label>
+    <input type="text" id="code" name="code" required>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" required>
+    <input type="submit" value="Add Stock">
+  </form>
+
+  <table id="stockTable">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Stock items will be added here -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  document.getElementById("stockForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    var code = document.getElementById("code").value;
+    var quantity = document.getElementById("quantity").value;
+    
+    addStockItem(code, quantity);
+    
+    document.getElementById("code").value = "";
+    document.getElementById("quantity").value = "";
+  });
+
+  function addStockItem(code, quantity) {
+    var tableBody = document.getElementById("stockTable").getElementsByTagName("tbody")[0];
+    var row = tableBody.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    cell1.textContent = code;
+    cell2.textContent = quantity;
+  }
+</script>
+
+</body>
+</html>
